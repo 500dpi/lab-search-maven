@@ -5,8 +5,7 @@ import java.util.function.Predicate;
 /**
  * Assorted utilities for searching structures.
  *
- * @author Your Name Here
- * @author Your Name Here
+ * @author Sara Jaljaa
  * @author Samuel A. Rebelsky (starter code)
  */
 public class SearchUtils {
@@ -89,22 +88,27 @@ public class SearchUtils {
   /**
    * Search values for the first value for which pred holds.
    *
-   * @param <T> 
+   * @param <T>
    *   The type of values we're examining
    * @param values
    *   The iterable we're searching
    * @param pred
    *   The predicate used to determine whether or not the value is
    *   acceptable
-   * 
-   * @return the first mathcing element.
+   *
+   * @return the first matching element.
    *
    * @throws Exception
    *   If no matching value is found.
    */
-  public static <T> T search(Iterable<T> values, Predicate<? super T> pred) 
+  public static <T> T search(Iterable<T> values, Predicate<? super T> pred)
       throws Exception {
-    throw new Exception("Unimplemented");       // STUB
+    for (T value : values) {
+      if (pred.test(value)) {
+        return (T) value;
+      } // if
+    } // for
+    throw new Exception("No matching value found!");
   } // search(Iterable<T>, Predicate<? super T>)
 
   /**
@@ -129,5 +133,4 @@ public class SearchUtils {
     // return interativeBinarySearch(vals, val);
     // return recursiveBinarySearch(vals, val);
   } // binarySearch
-
 } // class SearchUtils
