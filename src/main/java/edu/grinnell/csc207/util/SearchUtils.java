@@ -56,7 +56,7 @@ public class SearchUtils {
   } // recursiveBinarySearch
 
   /**
-   * Search for val in a subarray of values, return the index of an 
+   * Search for val in a subarray of values, return the index of an
    * instance of val.
    *
    * @param values
@@ -130,7 +130,5 @@ public class SearchUtils {
    */
   public static int binarySearch(int[] vals, int val) throws Exception {
     return 0;
-    // return interativeBinarySearch(vals, val);
-    // return recursiveBinarySearch(vals, val);
   } // binarySearch
 } // class SearchUtils
