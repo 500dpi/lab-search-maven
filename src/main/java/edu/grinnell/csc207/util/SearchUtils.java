@@ -1,6 +1,7 @@
 package edu.grinnell.csc207.util;
 
 import java.util.function.Predicate;
+import java.util.Arrays;
 
 /**
  * Assorted utilities for searching structures.
@@ -64,6 +65,44 @@ public class SearchUtils {
     throw new Exception("Value " + val + " not found!");
   } // iterativeBinarySearch
 
+  /* Exercise 5: Midpoint Check */
+    // When you leave the +/-1 modifier out of the binary search for ub/lb,
+    // the loop/recursive call will not terminate and instead continue
+    // forever.
+
+  /* Example: */
+    // arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+    // val = 8
+
+    // ub = 9
+    // lb = 1
+
+    /*  1st iteration:   */
+    /* 1 2 3 4 5 6 7 8 9 */
+    /*      ¯¯¯          */
+    /*     lb = 4        */
+
+    /*  2nd iteration:   */
+    /*    4 5 6 7 8 9    */
+    /*       ¯¯¯         */
+    /*     lb = 6        */
+
+    /*  3rd iteration:   */
+    /*     6 7 8 9       */
+    /*      ¯¯¯          */
+    /*     lb = 7        */
+
+    /*  4th iteration:   */
+    /*      7 8 9        */
+    /*     ¯¯¯           */
+    /*     lb = 7        */
+
+    // Since will always be the first number (3/2 = 1 -- truncated),
+    // the bound forever stays stuck at lb = 7, ub = 9. Had lb been
+    // incremented after each search & discard, the iteration would
+    // have progressed since the bound would continue to change,
+    // eventually reaching 8.
+
   /**
    * Search for val in values, return the index of an instance of val.
    *
@@ -82,7 +121,32 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int recursiveBinarySearch(int[] vals, int val) throws Exception {
-    return 0;   // STUB
+    int ub = vals.length - 1;
+    int lb = 0;
+    int mid = (lb + ub) / 2;
+
+    if (mid >= 0) {
+      if (vals[mid] == val) {
+        return mid;
+      } else if (vals[mid] < val) {
+        lb = mid + 1;
+      } else if (vals[mid] > val) {
+        ub = mid - 1;
+      } // elif
+      return rbsHelper(vals, lb, ub, val);
+    } // if
+
+    // if (lb <= ub) {
+    //   if (vals[mid] == val) {
+    //     return mid;
+    //   } else if (vals[mid] < val) {
+    //     lb = mid + 1;
+    //   } else if (vals[mid] > val) {
+    //     ub = mid - 1;
+    //   } // elif
+    //   return rbsHelper(vals, lb, ub, val);
+    // } // if
+    throw new Exception("Value " + val + " not found!");
   } // recursiveBinarySearch
 
   /**
@@ -108,7 +172,12 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int rbsHelper(int[] vals, int lb, int ub, int val) throws Exception {
-    return 0;   // STUB
+    for (int i = lb; i < ub; i++) {
+      if (vals[i] == val) {
+        return i;
+      } // if
+    } // for
+    throw new Exception("Value " + val + " does not exist in array!");
   } // rbsHelper
 
   // +----------------+----------------------------------------------
