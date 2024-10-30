@@ -130,7 +130,8 @@ public class TestSearch {
   // +-------------+
 
   /**
-   * Searching with an array of the same value.
+   * Searching with an array that is filled with the same one
+   * value.
    *
    * @throws Exception
    *    When value is not found.
@@ -142,8 +143,8 @@ public class TestSearch {
   } // testBinarySearchSame()
 
   /**
-   * Searching with a long array that has the desired element
-   * near the end and beginning of the array.
+   * Searching with a long array that has the target element
+   * near the end or beginning of the array.
    *
    * @throws Exception
    *    When value is not found.
@@ -171,6 +172,13 @@ public class TestSearch {
     assertBinarySearchFinds(longArray, 3);
   } // testBinarySearchMaxMin()
 
+  /**
+   * Implements tests based on Jon Bentley's Programming Pearls
+   * column. Tests for searchable even values from 0-32 (exclusive).
+   *
+   * @throws Exception
+   *    When value is not found.
+   */
   @Test
   void testBinarySearchBentley() throws Exception {
     int[] arr = new int[32];
