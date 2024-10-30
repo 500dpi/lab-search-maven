@@ -31,7 +31,37 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int iterativeBinarySearch(int[] vals, int val) throws Exception {
-    return 0;   // STUB
+    int upper = vals.length - 1;
+    int lower = 0;
+    int length = vals.length;
+
+    /* Start at the center value of vals[] and iterate until the
+      length of the search reaches 0 */
+    for (int i = vals.length / 2; length >= 0;) {
+
+      /* If the value matches, return the index it is found at */
+      if (vals[i] == val) {
+        return i;
+
+      /* If the value is less than val, set the lower bound to the
+        next index over & keep the upper bound */
+      } else if (vals[i] < val) {
+        lower = i + 1;
+
+      /* If the value is greater than val, set the upper bound to the
+        index back one & keep the lower bound */
+      } else if (vals[i] > val) {
+        upper = i - 1;
+      } // elif
+
+      /* Ensure the length is nonnegative */
+      length = upper - lower;
+
+      /* Find the new starting index from the average of the upper &
+        lower bounds */
+      i = (upper + lower) / 2;
+    } // for
+    throw new Exception("Value " + val + " not found!");
   } // iterativeBinarySearch
 
   /**
@@ -129,6 +159,7 @@ public class SearchUtils {
    *   values[index] == val
    */
   public static int binarySearch(int[] vals, int val) throws Exception {
-    return 0;
+    return iterativeBinarySearch(vals, val);
+    // return recursiveBinarySearch(vals, val);
   } // binarySearch
 } // class SearchUtils
