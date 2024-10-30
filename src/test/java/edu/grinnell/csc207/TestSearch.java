@@ -170,4 +170,21 @@ public class TestSearch {
     assertBinarySearchFinds(longArray, 2);
     assertBinarySearchFinds(longArray, 3);
   } // testBinarySearchMaxMin()
+
+  @Test
+  void testBinarySearchBentley() throws Exception {
+    int[] arr = new int[32];
+
+    /* Set each index to a multiple of two */
+    for (int s = 0; s < arr.length; s++) {
+      arr[s] = s * 2;
+    } // for(s)
+
+    /* Ensure that each index is set to an even value */
+    for (int i = 0; i < arr.length; i++) {
+      assertBinarySearchFinds(arr, 2 * i);
+      assertBinarySearchFails(arr, (2 * i) + 1);
+      assertBinarySearchFails(arr, -1);
+    } // for(i)
+  } // testBinarySearchBentley()
 } // class TestSearch
