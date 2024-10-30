@@ -1,11 +1,16 @@
-# Lab: Linear and Binary Search
+## Lab: Linear and Binary Search
 
 A lab on linear and binary search.
 
-Authors:
+---
 
-* Your Name Here
-* Your Name Here
-* Samuel A. Rebelsky (starter code)
+### Authors
 
-This code may be found at <INSERT-URL>. Original code at <https://github.com/Grinnell-CSC207/lab-search-maven>.
+- Sara Jaljaa
+- Samuel A. Rebelsky (starter code)
+
+---
+
+### GitHub
+- [This code may be found at](https://github.com/500dpi/lab-search-maven)
+- [Original code at](https://github.com/Grinnell-CSC207/lab-search-maven)
