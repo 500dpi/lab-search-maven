@@ -2,8 +2,6 @@
 
 A lab on linear and binary search.
 
----
-
 ### Authors
 
 - Sara Jaljaa
@@ -11,6 +9,6 @@ A lab on linear and binary search.
 
 ---
 
-### GitHub
-- [This code may be found at](https://github.com/500dpi/lab-search-maven)
-- [Original code at](https://github.com/Grinnell-CSC207/lab-search-maven)
+### GitHub Projects
+- [Modified: 500dpi/lab-search-maven](https://github.com/500dpi/lab-search-maven)
+- [Original: Grinnell-CSC207/lab-search/maven](https://github.com/Grinnell-CSC207/lab-search-maven)
