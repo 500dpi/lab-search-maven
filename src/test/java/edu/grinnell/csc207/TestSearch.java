@@ -14,8 +14,7 @@ import edu.grinnell.csc207.util.SearchUtils;
 /**
  * Tests of our search methods.
  *
- * @author Your Name Here
- * @author Your Name Here
+ * @author Sara Jaljaa
  * @author Samuel A. Rebelsky
  */
 public class TestSearch {
@@ -49,7 +48,7 @@ public class TestSearch {
    * @param val
    *   The value we're searching for.
    */
-  void assertBinarySearchFinds(int expected, int[] values, int val) 
+  void assertBinarySearchFinds(int expected, int[] values, int val)
       throws Exception {
     assertEquals(expected, SearchUtils.binarySearch(values, val),
         () -> bsCall(values, val));
@@ -68,7 +67,7 @@ public class TestSearch {
   } // assertBinarySearchFinds(int[], int)
 
   /**
-   * Assert that a search for a particular value fails (hopefully, because 
+   * Assert that a search for a particular value fails (hopefully, because
    * the value * is not in the array).
    *
    * @param values
@@ -126,4 +125,49 @@ public class TestSearch {
     assertBinarySearchFinds(new int[] { 1, 1, 1, 2, 2, 3 }, 3);
   } // testBinarySearchDups()
 
+  // +-------------+-------------------------------------------------
+  // | Added Tests |
+  // +-------------+
+
+  /**
+   * Searching with an array of the same value.
+   *
+   * @throws Exception
+   *    When value is not found.
+   */
+  @Test
+  void testBinarySearchSame() throws Exception {
+    assertBinarySearchFinds(new int[] { 5, 5, 5, 5, 5 }, 5);
+    assertBinarySearchFails(new int[] { 5, 5, 5, 5, 5 }, 6);
+  } // testBinarySearchSame()
+
+  /**
+   * Searching with a long array that has the desired element
+   * near the end and beginning of the array.
+   *
+   * @throws Exception
+   *    When value is not found.
+   */
+  @Test
+  void testBinarySearchMaxMin() throws Exception {
+    int[] longArray = new int[151];
+    int[] longerArray = new int[301];
+
+    for (int i = 0; i < longerArray.length; i++) {
+      if (i < longArray.length) {
+        longArray[i] = i + 1;
+      } // if
+      longerArray[i] = i + 1;
+    } // for
+    
+    /* Find element at the end of the array */
+    assertBinarySearchFinds(longArray, 150);
+    assertBinarySearchFinds(longArray, 149);
+    assertBinarySearchFinds(longArray, 148);
+
+    /* Find element at the beginning of the array */
+    assertBinarySearchFinds(longArray, 1);
+    assertBinarySearchFinds(longArray, 2);
+    assertBinarySearchFinds(longArray, 3);
+  } // testBinarySearchMaxMin()
 } // class TestSearch
