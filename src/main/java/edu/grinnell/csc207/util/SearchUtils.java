@@ -97,7 +97,7 @@ public class SearchUtils {
    *   The predicate used to determine whether or not the value is
    *   acceptable
    * 
-   * @return the first mathcing element.
+   * @return the first matching element.
    *
    * @throws Exception
    *   If no matching value is found.
