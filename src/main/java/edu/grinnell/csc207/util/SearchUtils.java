@@ -121,31 +121,7 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int recursiveBinarySearch(int[] vals, int val) throws Exception {
-    int ub = vals.length - 1;
-    int lb = 0;
-    int mid = (lb + ub) / 2;
-
-    if (mid >= 0) {
-      if (vals[mid] == val) {
-        return mid;
-      } else if (vals[mid] < val) {
-        lb = mid + 1;
-      } else if (vals[mid] > val) {
-        ub = mid - 1;
-      } // elif
-      return rbsHelper(vals, lb, ub, val);
-    } // if
-
-    // if (lb <= ub) {
-    //   if (vals[mid] == val) {
-    //     return mid;
-    //   } else if (vals[mid] < val) {
-    //     lb = mid + 1;
-    //   } else if (vals[mid] > val) {
-    //     ub = mid - 1;
-    //   } // elif
-    //   return rbsHelper(vals, lb, ub, val);
-    // } // if
+    // STUB
     throw new Exception("Value " + val + " not found!");
   } // recursiveBinarySearch
 
