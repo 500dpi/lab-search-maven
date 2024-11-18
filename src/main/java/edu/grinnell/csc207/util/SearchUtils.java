@@ -46,12 +46,12 @@ public class SearchUtils {
       /* If the value is less than val, set the lower bound to the
         next index over & keep the upper bound */
       } else if (vals[midpoint] < val) {
-        lb += 1;
+        lb = midpoint + 1;
 
       /* If the value is greater than val, set the upper bound to the
         index back one & keep the lower bound */
       } else if (vals[midpoint] > val) {
-        ub -= 1;
+        ub = midpoint - 1;
       } // elif
 
       /* Find the new starting index from the average of the upper &
@@ -143,18 +143,20 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int rbsHelper(int[] vals, int lb, int ub, int val) throws Exception {
-    if (lb >= ub) {
+    if (lb > ub) {
       throw new Exception("Value " + val + " does not exist in array!");
     } else {
+      /* Set the midpoint from the given lower & upper bounds. */
       int midpoint = lb + (ub - lb) / 2;
+
+      /* Recurse over the smaller or larger bounded portion of the subarray,
+        excluding the midpoint, until you reach the index val is at (or not). */
       if (vals[midpoint] == val) {
         return midpoint;
       } else if (vals[midpoint] < val) {
-        lb += 1;
-        return rbsHelper(vals, lb, ub, val);
+        return rbsHelper(vals, midpoint + 1, ub, val);
       } else {
-        ub -= 1;
-        return rbsHelper(vals, lb, ub, val);
+        return rbsHelper(vals, lb, midpoint - 1, val);
       } // elif
     } // elif
   } // rbsHelper
@@ -210,6 +212,7 @@ public class SearchUtils {
     int bs1 = iterativeBinarySearch(vals, val);
     int bs2 = recursiveBinarySearch(vals, val);
 
+    /* For personal comparison during implementation. */
     if (bs1 == bs2) {
       return bs1;
     } else {
