@@ -32,35 +32,31 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int iterativeBinarySearch(int[] vals, int val) throws Exception {
-    int upper = vals.length - 1;
-    int lower = 0;
-    int length = vals.length;
+    int ub = vals.length;
+    int lb = 0;
 
     /* Start at the center value of vals[] and iterate until the
       length of the search reaches 0 */
-    for (int i = vals.length / 2; length >= 0;) {
+    for (int midpoint = lb + (ub - lb) / 2; lb <= ub;) {
 
       /* If the value matches, return the index it is found at */
-      if (vals[i] == val) {
-        return i;
+      if (vals[midpoint] == val) {
+        return midpoint;
 
       /* If the value is less than val, set the lower bound to the
         next index over & keep the upper bound */
-      } else if (vals[i] < val) {
-        lower = i + 1;
+      } else if (vals[midpoint] < val) {
+        lb += 1;
 
       /* If the value is greater than val, set the upper bound to the
         index back one & keep the lower bound */
-      } else if (vals[i] > val) {
-        upper = i - 1;
+      } else if (vals[midpoint] > val) {
+        ub -= 1;
       } // elif
-
-      /* Ensure the length is nonnegative */
-      length = upper - lower;
 
       /* Find the new starting index from the average of the upper &
         lower bounds */
-      i = (upper + lower) / 2;
+      midpoint = lb + (ub - lb) / 2;
     } // for
     throw new Exception("Value " + val + " not found!");
   } // iterativeBinarySearch
@@ -121,15 +117,14 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int recursiveBinarySearch(int[] vals, int val) throws Exception {
-    // STUB
-    throw new Exception("Value " + val + " not found!");
+    return rbsHelper(vals, 0, vals.length, val);
   } // recursiveBinarySearch
 
   /**
    * Search for val in a subarray of values, return the index of an
    * instance of val.
    *
-   * @param values
+   * @param vals
    *   A sorted array of integers
    * @param lb
    *   The lower bound of the area of interest (inclusive)
@@ -148,12 +143,20 @@ public class SearchUtils {
    *   values[index] == val
    */
   static int rbsHelper(int[] vals, int lb, int ub, int val) throws Exception {
-    for (int i = lb; i < ub; i++) {
-      if (vals[i] == val) {
-        return i;
-      } // if
-    } // for
-    throw new Exception("Value " + val + " does not exist in array!");
+    if (lb >= ub) {
+      throw new Exception("Value " + val + " does not exist in array!");
+    } else {
+      int midpoint = lb + (ub - lb) / 2;
+      if (vals[midpoint] == val) {
+        return midpoint;
+      } else if (vals[midpoint] < val) {
+        lb += 1;
+        return rbsHelper(vals, lb, ub, val);
+      } else {
+        ub -= 1;
+        return rbsHelper(vals, lb, ub, val);
+      } // elif
+    } // elif
   } // rbsHelper
 
   // +----------------+----------------------------------------------
@@ -204,7 +207,13 @@ public class SearchUtils {
    *   values[index] == val
    */
   public static int binarySearch(int[] vals, int val) throws Exception {
-    return iterativeBinarySearch(vals, val);
-    // return recursiveBinarySearch(vals, val);
+    int bs1 = iterativeBinarySearch(vals, val);
+    int bs2 = recursiveBinarySearch(vals, val);
+
+    if (bs1 == bs2) {
+      return bs1;
+    } else {
+      throw new Exception("bs1 =  " + bs1 + " while bs2 = " + bs2);
+    } // elif
   } // binarySearch
 } // class SearchUtils
